@@ -1,0 +1,56 @@
+[
+  {
+    "type": "url",
+    "value": "http://localhost:3000",
+    "source": "recon-seed",
+    "confidence": 0.97
+  },
+  {
+    "type": "software_product",
+    "value": "nodejs",
+    "source": "recon-seed",
+    "confidence": 0.86
+  },
+  {
+    "type": "framework",
+    "value": "express",
+    "source": "recon-seed",
+    "confidence": 0.84
+  },
+  {
+    "type": "path",
+    "value": "/login",
+    "source": "recon-seed",
+    "confidence": 0.91
+  },
+  {
+    "type": "path",
+    "value": "/search",
+    "source": "recon-seed",
+    "confidence": 0.9
+  },
+  {
+    "type": "path",
+    "value": "/api",
+    "source": "recon-seed",
+    "confidence": 0.9
+  },
+  {
+    "type": "path",
+    "value": "/rest",
+    "source": "recon-seed",
+    "confidence": 0.88
+  },
+  {
+    "type": "panel",
+    "value": "login-form",
+    "source": "recon-seed",
+    "confidence": 0.82
+  },
+  {
+    "type": "feature",
+    "value": "jwt-auth",
+    "source": "recon-seed",
+    "confidence": 0.8
+  }
+]

@@ -1,0 +1,972 @@
+[
+  {
+    "template_id": "wordpress-db-exposure",
+    "info": {
+      "name": "WordPress Database Backup File - Exposure",
+      "severity": "high",
+      "impact_score": 0.8,
+      "tags": [
+        "exposure",
+        "wordpress",
+        "backup",
+        "database",
+        "sql",
+        "misconfig"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "medium",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "medium",
+      "timeout": 30
+    },
+    "outputs": [
+      "vulnerability",
+      "cve",
+      "exposure"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "0x_Akoko",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\exposures\\backups\\wordpress-db-exposure.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-wp-env-exposure",
+    "info": {
+      "name": "WordPress Configuration wp-env - Exposure",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "wp",
+        "wordpress",
+        "config",
+        "exposure",
+        "misconfig"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [
+      "exposure"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "0x_Akoko",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\exposures\\configs\\wordpress-wp-env-exposure.yaml"
+    }
+  },
+  {
+    "template_id": "xampp-phpinfo-detect",
+    "info": {
+      "name": "XAMPP PHP info Page - Detect",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "config",
+        "exposure",
+        "phpinfo",
+        "vuln",
+        "xampp"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [
+      "exposure"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "pussycat0x",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\exposures\\configs\\xampp-phpinfo-detect.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-readme-file",
+    "info": {
+      "name": "WordPress Readme File",
+      "severity": "info",
+      "impact_score": 0.1,
+      "tags": [
+        "exposure",
+        "wordpress",
+        "wp",
+        "readme",
+        "files",
+        "vuln"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "fast",
+      "risk": "safe",
+      "timeout": 10
+    },
+    "outputs": [
+      "exposure"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "tess",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\exposures\\files\\wordpress-readme-file.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-amp-fpd",
+    "info": {
+      "name": "WordPress AMP - Full Path Disclosure",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "wordpress",
+        "wp",
+        "wp-plugin",
+        "accelerated-mobile-pages",
+        "fpd"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [],
+    "output_mapping": [],
+    "meta": {
+      "author": "pussycat0x",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\misconfiguration\\wordpress\\wordpress-amp-fpd.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-cmb2-fpd",
+    "info": {
+      "name": "WordPress CMB2 - Full Path Disclosure",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "wp",
+        "wordpress",
+        "wp-plugin",
+        "fpd",
+        "cmb2",
+        "exposure"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [
+      "exposure"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "ritikchaddha",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\misconfiguration\\wordpress\\wordpress-cmb2-fpd.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-elementor-fpd",
+    "info": {
+      "name": "WordPress Elementor Page Builder - Full Path Disclosure",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "wp",
+        "wordpress",
+        "wp-plugin",
+        "fpd",
+        "elementor",
+        "misconfig"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [],
+    "output_mapping": [],
+    "meta": {
+      "author": "DhiyaneshDk",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\misconfiguration\\wordpress\\wordpress-elementor-fpd.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-events-manager-fpd",
+    "info": {
+      "name": "WordPress Events Manager - Full Path Disclosure",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "debug",
+        "wordpress",
+        "fpd",
+        "vuln",
+        "events-manager",
+        "wp-plugin"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [],
+    "output_mapping": [],
+    "meta": {
+      "author": "DhiyaneshDk",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\misconfiguration\\wordpress\\wordpress-events-manager-fpd.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-imsanity-fpd",
+    "info": {
+      "name": "WordPress Plugin Imsanity - Full Path Disclosure",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "wp",
+        "wordpress",
+        "wp-plugin",
+        "fpd",
+        "imsanity",
+        "exposure"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [
+      "exposure"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "ritikchaddha",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\misconfiguration\\wordpress\\wordpress-imsanity-fpd.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-joinchat-fpd",
+    "info": {
+      "name": "WordPress Joinchat - Full Path Disclosure",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "wp",
+        "wordpress",
+        "wp-plugin",
+        "fpd",
+        "creame-whatsapp-me",
+        "misconfig"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [],
+    "output_mapping": [],
+    "meta": {
+      "author": "DhiyaneshDk",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\misconfiguration\\wordpress\\wordpress-joinchat-fpd.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-menu-image-fpd",
+    "info": {
+      "name": "WordPress Menu Image - Full Path Disclosure",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "wp",
+        "wordpress",
+        "wp-plugin",
+        "fpd",
+        "menu-image",
+        "misconfig"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [],
+    "output_mapping": [],
+    "meta": {
+      "author": "DhiyaneshDk",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\misconfiguration\\wordpress\\wordpress-menu-image-fpd.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-meta-box-fpd",
+    "info": {
+      "name": "WordPress Meta Box - Full Path Disclosure",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "wordpress",
+        "wp-plugin",
+        "fpd",
+        "disclosure",
+        "meta-box"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [],
+    "output_mapping": [],
+    "meta": {
+      "author": "pussycat0x",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\misconfiguration\\wordpress\\wordpress-meta-box-fpd.yaml"
+    }
+  },
+  {
+    "template_id": "wp-beaver-builder-lite-version-fpd",
+    "info": {
+      "name": "Beaver Builder Page Builder - Full Path Disclosure",
+      "severity": "low",
+      "impact_score": 0.3,
+      "tags": [
+        "debug",
+        "wordpress",
+        "wp",
+        "wp-plugin",
+        "beaver-builder-lite-version",
+        "fpd"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [
+        {
+          "type": "tech",
+          "operator": "eq",
+          "value": "wordpress",
+          "weight": 1.0
+        }
+      ],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "normal",
+      "risk": "safe",
+      "timeout": 30
+    },
+    "outputs": [],
+    "output_mapping": [],
+    "meta": {
+      "author": "theamanrawat",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\misconfiguration\\wordpress\\wp-beaver-builder-lite-version-fpd.yaml"
+    }
+  },
+  {
+    "template_id": "graphql-apiforwp-detect",
+    "info": {
+      "name": "Graphql apiforwp Detect",
+      "severity": "info",
+      "impact_score": 0.1,
+      "tags": [
+        "tech",
+        "graphql",
+        "wordpress"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "fast",
+      "risk": "safe",
+      "timeout": 10
+    },
+    "outputs": [
+      "tech"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "princechaddha",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\technologies\\graphql\\graphql-apiforwp-detect.yaml"
+    }
+  },
+  {
+    "template_id": "graphql-wpgraphql-detect",
+    "info": {
+      "name": "Graphql wpgraphql Detect",
+      "severity": "info",
+      "impact_score": 0.1,
+      "tags": [
+        "tech",
+        "graphql",
+        "wordpress"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "fast",
+      "risk": "safe",
+      "timeout": 10
+    },
+    "outputs": [
+      "tech"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "princechaddha",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\technologies\\graphql\\graphql-wpgraphql-detect.yaml"
+    }
+  },
+  {
+    "template_id": "phppgadmin-version",
+    "info": {
+      "name": "PhpPgAdmin Version Information - Detect",
+      "severity": "info",
+      "impact_score": 0.1,
+      "tags": [
+        "tech",
+        "phppgadmin",
+        "discovery"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "fast",
+      "risk": "safe",
+      "timeout": 10
+    },
+    "outputs": [
+      "tech"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "dr0pd34d",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\technologies\\phppgadmin-version.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-plugin-detect",
+    "info": {
+      "name": "Wordpress Plugin Detection",
+      "severity": "info",
+      "impact_score": 0.1,
+      "tags": [
+        "tech",
+        "wp",
+        "wordpress",
+        "plugin",
+        "detection",
+        "wp-plugin",
+        "discovery"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "fast",
+      "risk": "safe",
+      "timeout": 10
+    },
+    "outputs": [
+      "tech"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "s4e-io",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\technologies\\wordpress\\plugins\\wordpress-plugin-detect.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-theme-detect",
+    "info": {
+      "name": "Wordpress Theme Detection",
+      "severity": "info",
+      "impact_score": 0.1,
+      "tags": [
+        "tech",
+        "wp",
+        "wordpress",
+        "theme",
+        "detection",
+        "wp-theme",
+        "discovery"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "fast",
+      "risk": "safe",
+      "timeout": 10
+    },
+    "outputs": [
+      "tech"
+    ],
+    "output_mapping": [],
+    "meta": {
+      "author": "s4e-io",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\technologies\\wordpress\\themes\\wordpress-theme-detect.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-passive-detection",
+    "info": {
+      "name": "WordPress Passive Detection - Plugins & Themes",
+      "severity": "info",
+      "impact_score": 0.1,
+      "tags": [
+        "tech",
+        "wordpress",
+        "cms",
+        "wp",
+        "plugin",
+        "theme",
+        "discovery",
+        "passive",
+        "enum"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "fast",
+      "risk": "safe",
+      "timeout": 10
+    },
+    "outputs": [
+      "tech"
+    ],
+    "output_mapping": [
+      {
+        "source_key": "plugin_slug",
+        "to_fact_type": "extracted",
+        "confidence_boost": 0.0
+      },
+      {
+        "source_key": "theme_slug",
+        "to_fact_type": "extracted",
+        "confidence_boost": 0.0
+      }
+    ],
+    "meta": {
+      "author": "princechaddha",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\technologies\\wordpress\\wordpress-passive-detection.yaml"
+    }
+  },
+  {
+    "template_id": "wordpress-detect",
+    "info": {
+      "name": "WordPress Detect",
+      "severity": "info",
+      "impact_score": 0.1,
+      "tags": [
+        "tech",
+        "wordpress",
+        "cms",
+        "wp",
+        "discovery"
+      ]
+    },
+    "sieves": {
+      "inputs": [
+        "url"
+      ],
+      "conditions": [],
+      "scope": {
+        "protocol": "http",
+        "risk_level": "safe",
+        "allowed_ports": [
+          80,
+          443
+        ]
+      }
+    },
+    "execution": {
+      "cost": "fast",
+      "risk": "safe",
+      "timeout": 10
+    },
+    "outputs": [
+      "tech"
+    ],
+    "output_mapping": [
+      {
+        "source_key": "version_by_generator",
+        "to_fact_type": "extracted",
+        "confidence_boost": 0.0
+      },
+      {
+        "source_key": "version_by_js",
+        "to_fact_type": "extracted",
+        "confidence_boost": 0.0
+      },
+      {
+        "source_key": "version_by_css",
+        "to_fact_type": "extracted",
+        "confidence_boost": 0.0
+      }
+    ],
+    "meta": {
+      "author": "pdteam,daffainfo,ricardomaia,topscoder,AdamCrosser",
+      "last_updated": null,
+      "template_path": "nuclei-small\\http\\technologies\\wordpress-detect.yaml"
+    }
+  }
+]

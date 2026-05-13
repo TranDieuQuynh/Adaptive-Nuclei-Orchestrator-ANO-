@@ -1,0 +1,587 @@
+templates:
+- kind: template
+  id: login-check
+  template_role: discovery
+  template_path: http/miscellaneous/form-detection.yaml
+  template_info:
+    name: Login Surface Check
+    vendor: generic
+    product: juice-shop
+    version: unknown
+    severity: info
+    tags:
+    - auth
+    - login
+    - demo
+  matching:
+    preconditions:
+    - type: url
+    features:
+      protocol: http
+      path_hints:
+      - login
+      - signin
+      technologies:
+      - web-application
+      - auth-surface
+      tags:
+      - auth
+      - login
+      - demo
+  runtime:
+    requires:
+    - name: base_url
+      type: url
+      required: true
+      source_fact_type: url
+    bind_rules:
+    - var: base_url
+      from_fact: url
+    run:
+      mode: nuclei
+      target: "{{base_url}}"
+    execution:
+      threads: 1
+      intrusive: false
+  run_info:
+    engine: nuclei
+    command_template: nuclei -t {template_path} -u {target} -jsonl -silent -no-color {extra_args}
+    request_count: 1
+    payload_count: 0
+    has_fuzzing: false
+    matcher_type:
+    - word
+    method_types:
+    - get
+  outputs:
+    evidence:
+    - id: ev-login-form
+      matcher_type: word
+      source:
+      - <form
+      - type="password"
+      - name="password"
+      - name="email"
+    - id: ev-login-path
+      matcher_type: regex
+      source:
+      - (?i)/(login|signin|auth)
+    - id: ev-login-intent
+      matcher_type: regex
+      source:
+      - (?i)(log\s?in|sign\s?in|authentication)
+    produced_facts:
+    - type: surface
+      value: login-form
+      confidence: high
+      fact_confidence: 0.78
+      fact_kind: derived
+      evidence_ref: ev-login-form
+    - type: endpoint_class
+      value: auth
+      confidence: medium
+      fact_confidence: 0.65
+      fact_kind: derived
+      evidence_ref: ev-login-path
+  scoring:
+    confidence: 0.72
+    cost: 0.25
+    specificity: 0.68
+
+- kind: template
+  id: xss-search-check
+  template_role: validation
+  template_path: dast/vulnerabilities/xss/reflected-xss.yaml
+  template_info:
+    name: Search Endpoint XSS Probe
+    vendor: generic
+    product: juice-shop
+    version: unknown
+    severity: medium
+    tags:
+    - xss
+    - search
+    - demo
+  matching:
+    preconditions:
+    - type: url
+    features:
+      protocol: http
+      path_hints:
+      - search
+      - query
+      technologies:
+      - web-application
+      tags:
+      - xss
+      - search
+      - demo
+  runtime:
+    requires:
+    - name: base_url
+      type: url
+      required: true
+      source_fact_type: url
+    bind_rules:
+    - var: base_url
+      from_fact: url
+    run:
+      mode: nuclei
+      target: "{{base_url}}"
+    execution:
+      threads: 1
+      intrusive: false
+  run_info:
+    engine: nuclei
+    command_template: nuclei -t {template_path} -u {target} -jsonl -silent -no-color {extra_args}
+    request_count: 1
+    payload_count: 0
+    has_fuzzing: false
+    matcher_type:
+    - word
+    method_types:
+    - get
+  outputs:
+    evidence:
+    - id: ev-xss-reflected
+      matcher_type: word
+      source:
+      - <script>alert(1)</script>
+    - id: ev-xss-query-point
+      matcher_type: dsl
+      source:
+      - contains(request, "q=")
+    produced_facts:
+    - type: vulnerability
+      value: xss
+      confidence: high
+      fact_confidence: 0.9
+      fact_kind: derived
+      evidence_ref: ev-xss-reflected
+    - type: parameter
+      value: q
+      confidence: medium
+      fact_confidence: 0.6
+      fact_kind: observed
+      evidence_ref: ev-xss-query-point
+  scoring:
+    confidence: 0.78
+    cost: 0.4
+    specificity: 0.74
+
+- kind: template
+  id: api-fuzz
+  template_role: discovery
+  template_path: http/exposures/apis/openapi.yaml
+  template_info:
+    name: API Surface Discovery
+    vendor: generic
+    product: juice-shop
+    version: unknown
+    severity: medium
+    tags:
+    - api
+    - discovery
+    - demo
+  matching:
+    preconditions:
+    - type: url
+    features:
+      protocol: http
+      path_hints:
+      - api
+      - graphql
+      - openapi
+      - swagger
+      technologies:
+      - api-service
+      - web-application
+      tags:
+      - api
+      - discovery
+      - demo
+  runtime:
+    requires:
+    - name: base_url
+      type: url
+      required: true
+      source_fact_type: url
+    bind_rules:
+    - var: base_url
+      from_fact: url
+    run:
+      mode: nuclei
+      target: "{{base_url}}"
+    execution:
+      threads: 1
+      intrusive: false
+  run_info:
+    engine: nuclei
+    command_template: nuclei -t {template_path} -u {target} -jsonl -silent -no-color {extra_args}
+    request_count: 1
+    payload_count: 0
+    has_fuzzing: false
+    matcher_type:
+    - word
+    method_types:
+    - get
+  outputs:
+    extracted_fields:
+    - openapi.version
+    - paths
+    - resource.keywords
+    evidence:
+    - id: ev-openapi-marker
+      matcher_type: regex
+      source:
+      - (?i)openapi\s*:\s*3\.[0-9]+
+    - id: ev-api-users-path
+      matcher_type: regex
+      source:
+      - (?i)^/api(?:/|$)
+    - id: ev-resource-users
+      matcher_type: word
+      source:
+      - user
+      - account
+    produced_facts:
+    - type: interface
+      value: api
+      confidence: high
+      fact_confidence: 0.88
+      fact_kind: derived
+      evidence_ref: ev-api-users-path
+    - type: api_schema
+      value: openapi
+      confidence: high
+      fact_confidence: 0.92
+      fact_kind: observed
+      evidence_ref: ev-openapi-marker
+    - type: resource
+      value: account-object
+      confidence: medium
+      fact_confidence: 0.6
+      fact_kind: derived
+      evidence_ref: ev-resource-users
+  scoring:
+    confidence: 0.73
+    cost: 0.35
+    specificity: 0.76
+
+- kind: template
+  id: jwt-extract
+  template_role: enrichment
+  template_path: http/exposures/tokens/generic/jwt-token.yaml
+  template_info:
+    name: JWT Token Exposure Check
+    vendor: generic
+    product: juice-shop
+    version: unknown
+    severity: medium
+    tags:
+    - auth
+    - jwt
+    - demo
+  matching:
+    preconditions:
+    - type: url
+    - type: endpoint_class
+      value: auth
+    features:
+      protocol: http
+      technologies:
+      - web-application
+      - auth-service
+      tags:
+      - auth
+      - jwt
+      - demo
+  runtime:
+    requires:
+    - name: base_url
+      type: url
+      required: true
+      source_fact_type: url
+    bind_rules:
+    - var: base_url
+      from_fact: url
+    run:
+      mode: nuclei
+      target: "{{base_url}}"
+    execution:
+      threads: 1
+      intrusive: false
+  run_info:
+    engine: nuclei
+    command_template: nuclei -t {template_path} -u {target} -jsonl -silent -no-color {extra_args}
+    request_count: 1
+    payload_count: 0
+    has_fuzzing: false
+    matcher_type:
+    - regex
+    method_types:
+    - get
+  outputs:
+    extracted_fields:
+    - token.jwt
+    - authorization.scheme
+    evidence:
+    - id: ev-jwt-token
+      matcher_type: regex
+      source:
+      - \b[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b
+    - id: ev-jwt-auth-feature
+      matcher_type: word
+      source:
+      - authorization: bearer
+    produced_facts:
+    - type: auth
+      value: jwt-token
+      confidence: high
+      fact_confidence: 0.9
+      fact_kind: observed
+      evidence_ref: ev-jwt-token
+    - type: feature
+      value: jwt-auth
+      confidence: medium
+      fact_confidence: 0.65
+      fact_kind: derived
+      evidence_ref: ev-jwt-auth-feature
+  scoring:
+    confidence: 0.76
+    cost: 0.3
+    specificity: 0.79
+
+- kind: template
+  id: idor-check
+  template_role: validation
+  template_path: http/vulnerabilities/wordpress/wp-haberadam-idor.yaml
+  template_info:
+    name: IDOR Validation Check
+    vendor: generic
+    product: web-app
+    version: unknown
+    severity: high
+    tags:
+    - api
+    - idor
+    - demo
+  matching:
+    preconditions:
+    - type: url
+    - type: interface
+      value: api
+    - type: resource
+      value: account-object
+    features:
+      protocol: http
+      path_hints:
+      - api
+      - account
+      technologies:
+      - api-service
+      - web-application
+      tags:
+      - api
+      - idor
+      - demo
+  runtime:
+    requires:
+    - name: base_url
+      type: url
+      required: true
+      source_fact_type: url
+    bind_rules:
+    - var: base_url
+      from_fact: url
+    run:
+      mode: nuclei
+      target: "{{base_url}}"
+    execution:
+      threads: 1
+      intrusive: true
+  run_info:
+    engine: nuclei
+    command_template: nuclei -t {template_path} -u {target} -jsonl -silent -no-color {extra_args}
+    request_count: 2
+    payload_count: 2
+    has_fuzzing: true
+    matcher_type:
+    - dsl
+    method_types:
+    - get
+  outputs:
+    extracted_fields:
+    - account.email
+    - object.identifier
+    evidence:
+    - id: ev-idor-dsl
+      matcher_type: dsl
+      source:
+      - status_code==200 && !contains(body, "forbidden")
+    - id: ev-user-record
+      matcher_type: regex
+      source:
+      - '"email"\s*:\s*"[^"]+"'
+    produced_facts:
+    - type: vulnerability
+      value: idor
+      confidence: high
+      fact_confidence: 0.93
+      fact_kind: derived
+      evidence_ref: ev-idor-dsl
+    - type: object
+      value: record-exposed
+      confidence: high
+      fact_confidence: 0.9
+      fact_kind: observed
+      evidence_ref: ev-user-record
+  scoring:
+    confidence: 0.86
+    cost: 0.6
+    specificity: 0.82
+
+- kind: template
+  id: sensitive-data-check
+  template_role: impact
+  template_path: http/miscellaneous/http-trace.yaml
+  template_info:
+    name: Sensitive Data Leak Impact
+    vendor: generic
+    product: web-app
+    version: unknown
+    severity: high
+    tags:
+    - impact
+    - data-leak
+    - demo
+  matching:
+    preconditions:
+    - type: url
+    - type: vulnerability
+      value: idor
+    features:
+      protocol: http
+      technologies:
+      - web-application
+      tags:
+      - impact
+      - data-leak
+      - demo
+  runtime:
+    requires:
+    - name: base_url
+      type: url
+      required: true
+      source_fact_type: url
+    bind_rules:
+    - var: base_url
+      from_fact: url
+    run:
+      mode: nuclei
+      target: "{{base_url}}"
+    execution:
+      threads: 1
+      intrusive: false
+  run_info:
+    engine: nuclei
+    command_template: nuclei -t {template_path} -u {target} -jsonl -silent -no-color {extra_args}
+    request_count: 1
+    payload_count: 0
+    has_fuzzing: false
+    matcher_type:
+    - word
+    method_types:
+    - get
+  outputs:
+    extracted_fields:
+    - pii.email
+    - credential.password
+    evidence:
+    - id: ev-data-leak
+      matcher_type: word
+      source:
+      - email
+      - password
+    produced_facts:
+    - type: impact
+      value: data-leak
+      confidence: high
+      fact_confidence: 0.9
+      fact_kind: derived
+      evidence_ref: ev-data-leak
+  scoring:
+    confidence: 0.9
+    cost: 0.25
+    specificity: 0.85
+
+- kind: template
+  id: xss-impact-check
+  template_role: impact
+  template_path: dast/vulnerabilities/xss/dom-xss.yaml
+  template_info:
+    name: XSS Impact Escalation
+    vendor: generic
+    product: web-app
+    version: unknown
+    severity: medium
+    tags:
+    - impact
+    - xss
+    - demo
+  matching:
+    preconditions:
+    - type: url
+    - type: vulnerability
+      value: xss
+    features:
+      protocol: http
+      technologies:
+      - web-application
+      tags:
+      - impact
+      - xss
+      - demo
+  runtime:
+    requires:
+    - name: base_url
+      type: url
+      required: true
+      source_fact_type: url
+    bind_rules:
+    - var: base_url
+      from_fact: url
+    run:
+      mode: nuclei
+      target: "{{base_url}}"
+    execution:
+      threads: 1
+      intrusive: false
+  run_info:
+    engine: nuclei
+    command_template: nuclei -t {template_path} -u {target} -jsonl -silent -no-color {extra_args}
+    request_count: 1
+    payload_count: 0
+    has_fuzzing: false
+    matcher_type:
+    - word
+    method_types:
+    - get
+  outputs:
+    evidence:
+    - id: ev-xss-impact
+      matcher_type: word
+      source:
+      - <script>
+      - onerror=
+    produced_facts:
+    - type: impact
+      value: xss-impact
+      confidence: medium
+      fact_confidence: 0.65
+      fact_kind: derived
+      evidence_ref: ev-xss-impact
+  scoring:
+    confidence: 0.8
+    cost: 0.3
+    specificity: 0.8

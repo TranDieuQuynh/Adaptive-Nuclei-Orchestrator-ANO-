@@ -1,0 +1,12 @@
+[
+  {
+    "from": "seed",
+    "to": "api-fuzz",
+    "trigger": "url=http://localhost:3000"
+  },
+  {
+    "from": "seed",
+    "to": "login-check",
+    "trigger": "url=http://localhost:3000"
+  }
+]

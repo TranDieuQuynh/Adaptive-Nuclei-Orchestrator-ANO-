@@ -1,0 +1,73 @@
+{
+  "template_metrics": [
+    {
+      "id": "login-check",
+      "before_cost": 0.25,
+      "after_cost": 0.8929,
+      "before_specificity": 0.68,
+      "after_specificity": 0.165
+    },
+    {
+      "id": "xss-search-check",
+      "before_cost": 0.4,
+      "after_cost": 0.8929,
+      "before_specificity": 0.74,
+      "after_specificity": 0.165
+    },
+    {
+      "id": "api-fuzz",
+      "before_cost": 0.35,
+      "after_cost": 0.8929,
+      "before_specificity": 0.76,
+      "after_specificity": 0.215
+    },
+    {
+      "id": "jwt-extract",
+      "before_cost": 0.3,
+      "after_cost": 0.8929,
+      "before_specificity": 0.79,
+      "after_specificity": 0.115
+    },
+    {
+      "id": "idor-check",
+      "before_cost": 0.6,
+      "after_cost": 0.4643,
+      "before_specificity": 0.82,
+      "after_specificity": 0.18
+    },
+    {
+      "id": "sensitive-data-check",
+      "before_cost": 0.25,
+      "after_cost": 0.8929,
+      "before_specificity": 0.85,
+      "after_specificity": 0.115
+    },
+    {
+      "id": "xss-impact-check",
+      "before_cost": 0.3,
+      "after_cost": 0.8929,
+      "before_specificity": 0.8,
+      "after_specificity": 0.115
+    }
+  ],
+  "run_summary": {
+    "before_selected_templates": [
+      "api-fuzz",
+      "login-check"
+    ],
+    "after_selected_templates": [
+      "api-fuzz",
+      "login-check"
+    ],
+    "before_attack_edges": 2,
+    "after_attack_edges": 2,
+    "before_fact_count": 12,
+    "after_fact_count": 12,
+    "before_execution_errors": [
+      "xss-search-check"
+    ],
+    "after_execution_errors": [
+      "xss-search-check"
+    ]
+  }
+}

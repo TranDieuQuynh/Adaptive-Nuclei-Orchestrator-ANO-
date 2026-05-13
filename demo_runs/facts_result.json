@@ -1,0 +1,1576 @@
+{
+  "facts": [
+    {
+      "type": "url",
+      "type_label": "url",
+      "value": "http://localhost:3000",
+      "source": "seed",
+      "confidence": 0.97,
+      "key": "url",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694471+00:00"
+    },
+    {
+      "type": "domain",
+      "type_label": "domain",
+      "value": "localhost",
+      "source": "seed",
+      "confidence": 0.97,
+      "key": "host",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694545+00:00"
+    },
+    {
+      "type": "protocol",
+      "type_label": "protocol",
+      "value": "http",
+      "source": "seed",
+      "confidence": 0.97,
+      "key": "name",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694579+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/rest/products/search",
+      "source": "seed",
+      "confidence": 0.92,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694611+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/rest/user/login",
+      "source": "seed",
+      "confidence": 0.92,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694650+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/rest/user/whoami",
+      "source": "seed",
+      "confidence": 0.9,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694681+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/api/challenges",
+      "source": "seed",
+      "confidence": 0.9,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694702+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/api/products",
+      "source": "seed",
+      "confidence": 0.9,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694771+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/rest/admin/application-configuration",
+      "source": "seed",
+      "confidence": 0.85,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694794+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/graphql",
+      "source": "seed",
+      "confidence": 0.82,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694812+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/openapi.json",
+      "source": "seed",
+      "confidence": 0.82,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694828+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/swagger-ui",
+      "source": "seed",
+      "confidence": 0.82,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694847+00:00"
+    }
+  ],
+  "risk_summary": {
+    "risk_level": "LOW",
+    "risk_score": 0.0,
+    "vulnerability_count": 0,
+    "impact_count": 0,
+    "top_vulnerabilities": [],
+    "top_impacts": []
+  },
+  "executed_templates": [
+    "api-fuzz",
+    "login-check"
+  ],
+  "attack_graph": [
+    {
+      "from": "seed",
+      "to": "api-fuzz",
+      "trigger": "url=http://localhost:3000"
+    },
+    {
+      "from": "seed",
+      "to": "login-check",
+      "trigger": "url=http://localhost:3000"
+    }
+  ],
+  "execution_errors": {
+    "xss-search-check": "[FTL] Could not run nuclei: no templates provided for scan [command: nuclei -t C:\\Users\\LENOVO\\nuclei-templates\\dast\\vulnerabilities\\xss\\reflected-xss.yaml -u http://127.0.0.1:3000 -jsonl -silent -no-color]"
+  },
+  "execution_history": [
+    {
+      "timestamp": "2026-04-17T08:06:46.745694+00:00",
+      "depth": 1,
+      "template_id": "xss-search-check",
+      "target": "http://localhost:3000",
+      "bound_vars": {
+        "target": "http://localhost:3000",
+        "condition_types": [
+          "url"
+        ]
+      },
+      "facts_fingerprint": "5e45a50012c6321dcebed725c08805fbeca7ac81",
+      "relevant_fact_types": [
+        "panel",
+        "parameter",
+        "path",
+        "protocol",
+        "service",
+        "software_product",
+        "software_version",
+        "url",
+        "vendor",
+        "vulnerability"
+      ],
+      "relevant_fact_count": 11,
+      "result_summary": "[FTL] Could not run nuclei: no templates provided for scan [command: nuclei -t C:\\Users\\LENOVO\\nuclei-templates\\dast\\vulnerabilities\\xss\\reflected-xss.yaml -u http://127.0.0.1:3000 -jsonl -silent -no-color]",
+      "status": "failed",
+      "new_facts_count": 0
+    },
+    {
+      "timestamp": "2026-04-17T08:06:46.747019+00:00",
+      "depth": 1,
+      "template_id": "api-fuzz",
+      "target": "http://localhost:3000",
+      "bound_vars": {
+        "target": "http://localhost:3000",
+        "condition_types": [
+          "url"
+        ]
+      },
+      "facts_fingerprint": "27c185d3261f2fab53fac2139d98426c77c7e184",
+      "relevant_fact_types": [
+        "api_schema",
+        "interface",
+        "panel",
+        "path",
+        "protocol",
+        "resource",
+        "service",
+        "software_product",
+        "software_version",
+        "url",
+        "vendor",
+        "vulnerability"
+      ],
+      "relevant_fact_count": 11,
+      "result_summary": "no nuclei matches",
+      "status": "no_new_facts",
+      "new_facts_count": 0
+    },
+    {
+      "timestamp": "2026-04-17T08:06:46.748029+00:00",
+      "depth": 1,
+      "template_id": "login-check",
+      "target": "http://localhost:3000",
+      "bound_vars": {
+        "target": "http://localhost:3000",
+        "condition_types": [
+          "url"
+        ]
+      },
+      "facts_fingerprint": "6765cc01863d538d139b19201141e6ebf6d2f0e0",
+      "relevant_fact_types": [
+        "endpoint_class",
+        "panel",
+        "path",
+        "protocol",
+        "service",
+        "software_product",
+        "software_version",
+        "surface",
+        "url",
+        "vendor",
+        "vulnerability"
+      ],
+      "relevant_fact_count": 11,
+      "result_summary": "no nuclei matches",
+      "status": "no_new_facts",
+      "new_facts_count": 0
+    },
+    {
+      "timestamp": "2026-04-17T08:06:46.755336+00:00",
+      "depth": 1,
+      "template_id": "api-fuzz",
+      "target": "http://localhost:3000",
+      "bound_vars": {
+        "target": "http://localhost:3000",
+        "condition_types": [
+          "url"
+        ]
+      },
+      "facts_fingerprint": "27c185d3261f2fab53fac2139d98426c77c7e184",
+      "relevant_fact_types": [
+        "api_schema",
+        "interface",
+        "panel",
+        "path",
+        "protocol",
+        "resource",
+        "service",
+        "software_product",
+        "software_version",
+        "url",
+        "vendor",
+        "vulnerability"
+      ],
+      "relevant_fact_count": 11,
+      "result_summary": "same-state-no-new-facts",
+      "status": "skipped_due_to_loop",
+      "new_facts_count": 0
+    },
+    {
+      "timestamp": "2026-04-17T08:06:46.757956+00:00",
+      "depth": 1,
+      "template_id": "login-check",
+      "target": "http://localhost:3000",
+      "bound_vars": {
+        "target": "http://localhost:3000",
+        "condition_types": [
+          "url"
+        ]
+      },
+      "facts_fingerprint": "6765cc01863d538d139b19201141e6ebf6d2f0e0",
+      "relevant_fact_types": [
+        "endpoint_class",
+        "panel",
+        "path",
+        "protocol",
+        "service",
+        "software_product",
+        "software_version",
+        "surface",
+        "url",
+        "vendor",
+        "vulnerability"
+      ],
+      "relevant_fact_count": 11,
+      "result_summary": "same-state-no-new-facts",
+      "status": "skipped_due_to_loop",
+      "new_facts_count": 0
+    },
+    {
+      "timestamp": "2026-04-17T08:06:48.177479+00:00",
+      "depth": 1,
+      "template_id": "xss-search-check",
+      "target": "http://localhost:3000",
+      "bound_vars": {
+        "target": "http://localhost:3000",
+        "condition_types": [
+          "url"
+        ]
+      },
+      "facts_fingerprint": "5e45a50012c6321dcebed725c08805fbeca7ac81",
+      "relevant_fact_types": [
+        "panel",
+        "parameter",
+        "path",
+        "protocol",
+        "service",
+        "software_product",
+        "software_version",
+        "url",
+        "vendor",
+        "vulnerability"
+      ],
+      "relevant_fact_count": 11,
+      "result_summary": "[FTL] Could not run nuclei: no templates provided for scan [command: nuclei -t C:\\Users\\LENOVO\\nuclei-templates\\dast\\vulnerabilities\\xss\\reflected-xss.yaml -u http://127.0.0.1:3000 -jsonl -silent -no-color]",
+      "status": "failed",
+      "new_facts_count": 0
+    },
+    {
+      "timestamp": "2026-04-17T08:06:48.181661+00:00",
+      "depth": 1,
+      "template_id": "api-fuzz",
+      "target": "http://localhost:3000",
+      "bound_vars": {
+        "target": "http://localhost:3000",
+        "condition_types": [
+          "url"
+        ]
+      },
+      "facts_fingerprint": "27c185d3261f2fab53fac2139d98426c77c7e184",
+      "relevant_fact_types": [
+        "api_schema",
+        "interface",
+        "panel",
+        "path",
+        "protocol",
+        "resource",
+        "service",
+        "software_product",
+        "software_version",
+        "url",
+        "vendor",
+        "vulnerability"
+      ],
+      "relevant_fact_count": 11,
+      "result_summary": "same-state-no-new-facts",
+      "status": "skipped_due_to_loop",
+      "new_facts_count": 0
+    },
+    {
+      "timestamp": "2026-04-17T08:06:48.182779+00:00",
+      "depth": 1,
+      "template_id": "xss-search-check",
+      "target": "http://localhost:3000",
+      "bound_vars": {
+        "target": "http://localhost:3000",
+        "condition_types": [
+          "url"
+        ]
+      },
+      "facts_fingerprint": "5e45a50012c6321dcebed725c08805fbeca7ac81",
+      "relevant_fact_types": [
+        "panel",
+        "parameter",
+        "path",
+        "protocol",
+        "service",
+        "software_product",
+        "software_version",
+        "url",
+        "vendor",
+        "vulnerability"
+      ],
+      "relevant_fact_count": 11,
+      "result_summary": "retry-cap-exhausted",
+      "status": "skipped_due_to_loop",
+      "new_facts_count": 0
+    },
+    {
+      "timestamp": "2026-04-17T08:06:48.183862+00:00",
+      "depth": 1,
+      "template_id": "login-check",
+      "target": "http://localhost:3000",
+      "bound_vars": {
+        "target": "http://localhost:3000",
+        "condition_types": [
+          "url"
+        ]
+      },
+      "facts_fingerprint": "6765cc01863d538d139b19201141e6ebf6d2f0e0",
+      "relevant_fact_types": [
+        "endpoint_class",
+        "panel",
+        "path",
+        "protocol",
+        "service",
+        "software_product",
+        "software_version",
+        "surface",
+        "url",
+        "vendor",
+        "vulnerability"
+      ],
+      "relevant_fact_count": 11,
+      "result_summary": "same-state-no-new-facts",
+      "status": "skipped_due_to_loop",
+      "new_facts_count": 0
+    }
+  ],
+  "template_execution_state": {
+    "xss-search-check": {
+      "last_status": "skipped_due_to_loop",
+      "status_counts": {
+        "failed": 2,
+        "skipped_due_to_loop": 1
+      },
+      "total_runs": 2,
+      "successful_runs": 0,
+      "no_new_facts_runs": 0,
+      "no_new_streak": 0,
+      "failed_runs": 2,
+      "skipped_due_to_loop": 1
+    },
+    "api-fuzz": {
+      "last_status": "skipped_due_to_loop",
+      "status_counts": {
+        "no_new_facts": 1,
+        "skipped_due_to_loop": 2
+      },
+      "total_runs": 1,
+      "successful_runs": 0,
+      "no_new_facts_runs": 1,
+      "no_new_streak": 1,
+      "failed_runs": 0,
+      "skipped_due_to_loop": 2
+    },
+    "login-check": {
+      "last_status": "skipped_due_to_loop",
+      "status_counts": {
+        "no_new_facts": 1,
+        "skipped_due_to_loop": 2
+      },
+      "total_runs": 1,
+      "successful_runs": 0,
+      "no_new_facts_runs": 1,
+      "no_new_streak": 1,
+      "failed_runs": 0,
+      "skipped_due_to_loop": 2
+    }
+  },
+  "loop_prevention_history": [
+    {
+      "depth": 1,
+      "template": "api-fuzz",
+      "target": "http://localhost:3000",
+      "facts_fingerprint": "27c185d3261f2fab53fac2139d98426c77c7e184",
+      "reason": "same-state-no-new-facts",
+      "meta": {
+        "fingerprint_attempts": 1,
+        "previous_status": "no_new_facts"
+      }
+    },
+    {
+      "depth": 1,
+      "template": "login-check",
+      "target": "http://localhost:3000",
+      "facts_fingerprint": "6765cc01863d538d139b19201141e6ebf6d2f0e0",
+      "reason": "same-state-no-new-facts",
+      "meta": {
+        "fingerprint_attempts": 1,
+        "previous_status": "no_new_facts"
+      }
+    },
+    {
+      "depth": 1,
+      "template": "api-fuzz",
+      "target": "http://localhost:3000",
+      "facts_fingerprint": "27c185d3261f2fab53fac2139d98426c77c7e184",
+      "reason": "same-state-no-new-facts",
+      "meta": {
+        "fingerprint_attempts": 1,
+        "previous_status": "skipped_due_to_loop"
+      }
+    },
+    {
+      "depth": 1,
+      "template": "xss-search-check",
+      "target": "http://localhost:3000",
+      "facts_fingerprint": "5e45a50012c6321dcebed725c08805fbeca7ac81",
+      "reason": "retry-cap-exhausted",
+      "meta": {
+        "fingerprint_attempts": 2,
+        "max_retries_per_template_state": 2
+      }
+    },
+    {
+      "depth": 1,
+      "template": "login-check",
+      "target": "http://localhost:3000",
+      "facts_fingerprint": "6765cc01863d538d139b19201141e6ebf6d2f0e0",
+      "reason": "same-state-no-new-facts",
+      "meta": {
+        "fingerprint_attempts": 1,
+        "previous_status": "skipped_due_to_loop"
+      }
+    }
+  ],
+  "scheduling": {
+    "fact_selection_strategy": "hybrid",
+    "k_latest": 20,
+    "k_latest_per_type": 3,
+    "max_templates_per_depth": 5,
+    "max_total_steps": 120,
+    "max_runs_per_template_target": 4,
+    "max_retries_per_template_state": 2,
+    "total_execution_steps": 4,
+    "max_parallel_workers": 3,
+    "parallel_batches": 2,
+    "depth_time_budget_seconds": 0.0,
+    "total_time_budget_seconds": 0.0,
+    "budget_stop_reason": null,
+    "elapsed_seconds": 4.492,
+    "min_candidate_score": 0.0,
+    "adaptive_pruning_enabled": true,
+    "ranking_weights": {
+      "confidence": 2.0,
+      "cost": 1.2,
+      "novelty": 1.0,
+      "specificity": 0.5
+    },
+    "decision_layer_rules": [
+      "idor_to_data_leak",
+      "token_to_jwt_chain",
+      "xss_to_exploit_chain"
+    ],
+    "depth_execution_counts": {
+      "1": 4
+    },
+    "pruning_counts": {
+      "score-below-threshold": 0,
+      "low-value-branch": 0,
+      "history-no-novelty": 0
+    },
+    "pruned_templates": [],
+    "scheduler_decisions": [
+      {
+        "depth": 1,
+        "template": "xss-search-check",
+        "target": "http://localhost:3000",
+        "facts_fingerprint": "5e45a50012c6321dcebed725c08805fbeca7ac81",
+        "bound_vars": {
+          "target": "http://localhost:3000",
+          "condition_types": [
+            "url"
+          ]
+        },
+        "relevant_fact_types": [
+          "panel",
+          "parameter",
+          "path",
+          "protocol",
+          "service",
+          "software_product",
+          "software_version",
+          "url",
+          "vendor",
+          "vulnerability"
+        ],
+        "relevant_fact_count": 11,
+        "baseline_override": false,
+        "baseline_tags": [],
+        "query_score": 0.5124,
+        "query_coverage": 1.0,
+        "query_soft_score": 0.0606,
+        "query_match_score": 0.0606,
+        "query_product_match": 0.0,
+        "query_version_match": 0.0,
+        "query_tag_match": 0.0,
+        "query_protocol_port_match": 0.97,
+        "query_fact_confidence": 0.97,
+        "query_specificity_score": 0.165,
+        "query_cost_score": 0.8929,
+        "query_intrusiveness_score": 0.106,
+        "query_reliability_score": 0.9125,
+        "query_hard_reasons": [],
+        "score": 0.7949,
+        "confidence": 0.791,
+        "cost": 0.8929,
+        "novelty": 1.0,
+        "specificity": 0.165,
+        "base_score": 0.7949,
+        "history_penalty": 1.0,
+        "decision_boost": 0.0,
+        "decision_rules": [],
+        "no_new_streak": 0
+      },
+      {
+        "depth": 1,
+        "template": "api-fuzz",
+        "target": "http://localhost:3000",
+        "facts_fingerprint": "27c185d3261f2fab53fac2139d98426c77c7e184",
+        "bound_vars": {
+          "target": "http://localhost:3000",
+          "condition_types": [
+            "url"
+          ]
+        },
+        "relevant_fact_types": [
+          "api_schema",
+          "interface",
+          "panel",
+          "path",
+          "protocol",
+          "resource",
+          "service",
+          "software_product",
+          "software_version",
+          "url",
+          "vendor",
+          "vulnerability"
+        ],
+        "relevant_fact_count": 11,
+        "baseline_override": false,
+        "baseline_tags": [],
+        "query_score": 0.522,
+        "query_coverage": 1.0,
+        "query_soft_score": 0.1681,
+        "query_match_score": 0.1681,
+        "query_product_match": 0.0,
+        "query_version_match": 0.0,
+        "query_tag_match": 0.225,
+        "query_protocol_port_match": 0.97,
+        "query_fact_confidence": 0.97,
+        "query_specificity_score": 0.215,
+        "query_cost_score": 0.8929,
+        "query_intrusiveness_score": 0.106,
+        "query_reliability_score": 0.9125,
+        "query_hard_reasons": [],
+        "score": 0.747,
+        "confidence": 0.791,
+        "cost": 0.8929,
+        "novelty": 0.75,
+        "specificity": 0.215,
+        "base_score": 0.747,
+        "history_penalty": 1.0,
+        "decision_boost": 0.0,
+        "decision_rules": [],
+        "no_new_streak": 0
+      },
+      {
+        "depth": 1,
+        "template": "login-check",
+        "target": "http://localhost:3000",
+        "facts_fingerprint": "6765cc01863d538d139b19201141e6ebf6d2f0e0",
+        "bound_vars": {
+          "target": "http://localhost:3000",
+          "condition_types": [
+            "url"
+          ]
+        },
+        "relevant_fact_types": [
+          "endpoint_class",
+          "panel",
+          "path",
+          "protocol",
+          "service",
+          "software_product",
+          "software_version",
+          "surface",
+          "url",
+          "vendor",
+          "vulnerability"
+        ],
+        "relevant_fact_count": 11,
+        "baseline_override": false,
+        "baseline_tags": [],
+        "query_score": 0.4774,
+        "query_coverage": 1.0,
+        "query_soft_score": 0.0606,
+        "query_match_score": 0.0606,
+        "query_product_match": 0.0,
+        "query_version_match": 0.0,
+        "query_tag_match": 0.0,
+        "query_protocol_port_match": 0.97,
+        "query_fact_confidence": 0.97,
+        "query_specificity_score": 0.165,
+        "query_cost_score": 0.8929,
+        "query_intrusiveness_score": 0.106,
+        "query_reliability_score": 0.9125,
+        "query_hard_reasons": [],
+        "score": 0.7417,
+        "confidence": 0.791,
+        "cost": 0.8929,
+        "novelty": 0.75,
+        "specificity": 0.165,
+        "base_score": 0.7417,
+        "history_penalty": 1.0,
+        "decision_boost": 0.0,
+        "decision_rules": [],
+        "no_new_streak": 0
+      },
+      {
+        "depth": 1,
+        "template": "xss-search-check",
+        "target": "http://localhost:3000",
+        "facts_fingerprint": "5e45a50012c6321dcebed725c08805fbeca7ac81",
+        "bound_vars": {
+          "target": "http://localhost:3000",
+          "condition_types": [
+            "url"
+          ]
+        },
+        "relevant_fact_types": [
+          "panel",
+          "parameter",
+          "path",
+          "protocol",
+          "service",
+          "software_product",
+          "software_version",
+          "url",
+          "vendor",
+          "vulnerability"
+        ],
+        "relevant_fact_count": 11,
+        "baseline_override": false,
+        "baseline_tags": [],
+        "query_score": 0.5124,
+        "query_coverage": 1.0,
+        "query_soft_score": 0.0606,
+        "query_match_score": 0.0606,
+        "query_product_match": 0.0,
+        "query_version_match": 0.0,
+        "query_tag_match": 0.0,
+        "query_protocol_port_match": 0.97,
+        "query_fact_confidence": 0.97,
+        "query_specificity_score": 0.165,
+        "query_cost_score": 0.8929,
+        "query_intrusiveness_score": 0.106,
+        "query_reliability_score": 0.9125,
+        "query_hard_reasons": [],
+        "score": 0.7949,
+        "confidence": 0.791,
+        "cost": 0.8929,
+        "novelty": 1.0,
+        "specificity": 0.165,
+        "base_score": 0.7949,
+        "history_penalty": 1.0,
+        "decision_boost": 0.0,
+        "decision_rules": [],
+        "no_new_streak": 0
+      }
+    ],
+    "template_query_history": [
+      {
+        "fact_count": 12,
+        "available_type_count": 4,
+        "available_pair_count": 12,
+        "tag_hints": [],
+        "protocol_hints": [
+          "http"
+        ],
+        "target_count": 2,
+        "targets": [
+          "http://localhost:3000",
+          "localhost"
+        ],
+        "product_count": 0,
+        "technology_count": 0,
+        "vendor_count": 0,
+        "version_count": 0,
+        "port_count": 0,
+        "header_count": 0,
+        "path_count": 9,
+        "avg_fact_confidence": 0.8967,
+        "multi_source_pairs": 0,
+        "multi_source_types": 0,
+        "templates_total": 7,
+        "templates_matched": 5,
+        "score_stats": {
+          "max": 0.522,
+          "min": 0.371,
+          "avg": 0.4509
+        },
+        "top_templates": [
+          "api-fuzz",
+          "xss-search-check",
+          "login-check",
+          "jwt-extract",
+          "sensitive-data-check"
+        ],
+        "depth": 1,
+        "iteration": 1,
+        "baseline_selected": []
+      },
+      {
+        "fact_count": 12,
+        "available_type_count": 4,
+        "available_pair_count": 12,
+        "tag_hints": [],
+        "protocol_hints": [
+          "http"
+        ],
+        "target_count": 2,
+        "targets": [
+          "http://localhost:3000",
+          "localhost"
+        ],
+        "product_count": 0,
+        "technology_count": 0,
+        "vendor_count": 0,
+        "version_count": 0,
+        "port_count": 0,
+        "header_count": 0,
+        "path_count": 9,
+        "avg_fact_confidence": 0.8967,
+        "multi_source_pairs": 0,
+        "multi_source_types": 0,
+        "templates_total": 7,
+        "templates_matched": 5,
+        "score_stats": {
+          "max": 0.522,
+          "min": 0.371,
+          "avg": 0.4509
+        },
+        "top_templates": [
+          "api-fuzz",
+          "xss-search-check",
+          "login-check",
+          "jwt-extract",
+          "sensitive-data-check"
+        ],
+        "depth": 1,
+        "iteration": 2,
+        "baseline_selected": []
+      },
+      {
+        "fact_count": 12,
+        "available_type_count": 4,
+        "available_pair_count": 12,
+        "tag_hints": [],
+        "protocol_hints": [
+          "http"
+        ],
+        "target_count": 2,
+        "targets": [
+          "http://localhost:3000",
+          "localhost"
+        ],
+        "product_count": 0,
+        "technology_count": 0,
+        "vendor_count": 0,
+        "version_count": 0,
+        "port_count": 0,
+        "header_count": 0,
+        "path_count": 9,
+        "avg_fact_confidence": 0.8967,
+        "multi_source_pairs": 0,
+        "multi_source_types": 0,
+        "templates_total": 7,
+        "templates_matched": 5,
+        "score_stats": {
+          "max": 0.522,
+          "min": 0.371,
+          "avg": 0.4509
+        },
+        "top_templates": [
+          "api-fuzz",
+          "xss-search-check",
+          "login-check",
+          "jwt-extract",
+          "sensitive-data-check"
+        ],
+        "depth": 1,
+        "iteration": 3,
+        "baseline_selected": []
+      }
+    ],
+    "baseline_scan_enabled": true,
+    "baseline_tags": [
+      "cve",
+      "exposure",
+      "generic",
+      "misconfig"
+    ],
+    "baseline_max_templates_per_depth": 3,
+    "baseline_selection_history": [
+      {
+        "depth": 1,
+        "iteration": 1,
+        "selected": []
+      },
+      {
+        "depth": 1,
+        "iteration": 2,
+        "selected": []
+      },
+      {
+        "depth": 1,
+        "iteration": 3,
+        "selected": []
+      }
+    ],
+    "validation_loop_enabled": true,
+    "validation_fact_types": [
+      "cms",
+      "framework",
+      "plugin",
+      "software_product",
+      "software_version"
+    ],
+    "validation_low_confidence_max": 0.6,
+    "validation_min_impact_score": 0.15,
+    "validation_history": [],
+    "loop_prevention_history": [
+      {
+        "depth": 1,
+        "template": "api-fuzz",
+        "target": "http://localhost:3000",
+        "facts_fingerprint": "27c185d3261f2fab53fac2139d98426c77c7e184",
+        "reason": "same-state-no-new-facts",
+        "meta": {
+          "fingerprint_attempts": 1,
+          "previous_status": "no_new_facts"
+        }
+      },
+      {
+        "depth": 1,
+        "template": "login-check",
+        "target": "http://localhost:3000",
+        "facts_fingerprint": "6765cc01863d538d139b19201141e6ebf6d2f0e0",
+        "reason": "same-state-no-new-facts",
+        "meta": {
+          "fingerprint_attempts": 1,
+          "previous_status": "no_new_facts"
+        }
+      },
+      {
+        "depth": 1,
+        "template": "api-fuzz",
+        "target": "http://localhost:3000",
+        "facts_fingerprint": "27c185d3261f2fab53fac2139d98426c77c7e184",
+        "reason": "same-state-no-new-facts",
+        "meta": {
+          "fingerprint_attempts": 1,
+          "previous_status": "skipped_due_to_loop"
+        }
+      },
+      {
+        "depth": 1,
+        "template": "xss-search-check",
+        "target": "http://localhost:3000",
+        "facts_fingerprint": "5e45a50012c6321dcebed725c08805fbeca7ac81",
+        "reason": "retry-cap-exhausted",
+        "meta": {
+          "fingerprint_attempts": 2,
+          "max_retries_per_template_state": 2
+        }
+      },
+      {
+        "depth": 1,
+        "template": "login-check",
+        "target": "http://localhost:3000",
+        "facts_fingerprint": "6765cc01863d538d139b19201141e6ebf6d2f0e0",
+        "reason": "same-state-no-new-facts",
+        "meta": {
+          "fingerprint_attempts": 1,
+          "previous_status": "skipped_due_to_loop"
+        }
+      }
+    ],
+    "template_execution_state": {
+      "xss-search-check": {
+        "last_status": "skipped_due_to_loop",
+        "status_counts": {
+          "failed": 2,
+          "skipped_due_to_loop": 1
+        },
+        "total_runs": 2,
+        "successful_runs": 0,
+        "no_new_facts_runs": 0,
+        "no_new_streak": 0,
+        "failed_runs": 2,
+        "skipped_due_to_loop": 1
+      },
+      "api-fuzz": {
+        "last_status": "skipped_due_to_loop",
+        "status_counts": {
+          "no_new_facts": 1,
+          "skipped_due_to_loop": 2
+        },
+        "total_runs": 1,
+        "successful_runs": 0,
+        "no_new_facts_runs": 1,
+        "no_new_streak": 1,
+        "failed_runs": 0,
+        "skipped_due_to_loop": 2
+      },
+      "login-check": {
+        "last_status": "skipped_due_to_loop",
+        "status_counts": {
+          "no_new_facts": 1,
+          "skipped_due_to_loop": 2
+        },
+        "total_runs": 1,
+        "successful_runs": 0,
+        "no_new_facts_runs": 1,
+        "no_new_streak": 1,
+        "failed_runs": 0,
+        "skipped_due_to_loop": 2
+      }
+    },
+    "min_fact_confidence": 0.45,
+    "confidence_cap": 0.97,
+    "partial_execution_min_required_coverage": 0.45,
+    "relaxed_fallback_min_required_coverage": 0.2,
+    "partial_execution_score_penalty": 0.82,
+    "relaxed_fallback_score_penalty": 0.68,
+    "low_confidence_pruned_total": 0
+  },
+  "blackboard_history": [
+    {
+      "label": "initial",
+      "timestamp": "2026-04-17T08:06:43.694876+00:00",
+      "metadata": {},
+      "fact_count": 12,
+      "facts": [
+        {
+          "type": "url",
+          "type_label": "url",
+          "value": "http://localhost:3000",
+          "source": "seed",
+          "confidence": 0.97,
+          "key": "url",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694471+00:00"
+        },
+        {
+          "type": "domain",
+          "type_label": "domain",
+          "value": "localhost",
+          "source": "seed",
+          "confidence": 0.97,
+          "key": "host",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694545+00:00"
+        },
+        {
+          "type": "protocol",
+          "type_label": "protocol",
+          "value": "http",
+          "source": "seed",
+          "confidence": 0.97,
+          "key": "name",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694579+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/rest/products/search",
+          "source": "seed",
+          "confidence": 0.92,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694611+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/rest/user/login",
+          "source": "seed",
+          "confidence": 0.92,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694650+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/rest/user/whoami",
+          "source": "seed",
+          "confidence": 0.9,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694681+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/api/challenges",
+          "source": "seed",
+          "confidence": 0.9,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694702+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/api/products",
+          "source": "seed",
+          "confidence": 0.9,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694771+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/rest/admin/application-configuration",
+          "source": "seed",
+          "confidence": 0.85,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694794+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/graphql",
+          "source": "seed",
+          "confidence": 0.82,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694812+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/openapi.json",
+          "source": "seed",
+          "confidence": 0.82,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694828+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/swagger-ui",
+          "source": "seed",
+          "confidence": 0.82,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694847+00:00"
+        }
+      ]
+    },
+    {
+      "label": "final",
+      "timestamp": "2026-04-17T08:06:48.184971+00:00",
+      "metadata": {
+        "executed_templates": [
+          "api-fuzz",
+          "login-check"
+        ],
+        "failed_templates": [
+          "xss-search-check"
+        ]
+      },
+      "fact_count": 12,
+      "facts": [
+        {
+          "type": "url",
+          "type_label": "url",
+          "value": "http://localhost:3000",
+          "source": "seed",
+          "confidence": 0.97,
+          "key": "url",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694471+00:00"
+        },
+        {
+          "type": "domain",
+          "type_label": "domain",
+          "value": "localhost",
+          "source": "seed",
+          "confidence": 0.97,
+          "key": "host",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694545+00:00"
+        },
+        {
+          "type": "protocol",
+          "type_label": "protocol",
+          "value": "http",
+          "source": "seed",
+          "confidence": 0.97,
+          "key": "name",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694579+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/rest/products/search",
+          "source": "seed",
+          "confidence": 0.92,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694611+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/rest/user/login",
+          "source": "seed",
+          "confidence": 0.92,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694650+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/rest/user/whoami",
+          "source": "seed",
+          "confidence": 0.9,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694681+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/api/challenges",
+          "source": "seed",
+          "confidence": 0.9,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694702+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/api/products",
+          "source": "seed",
+          "confidence": 0.9,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694771+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/rest/admin/application-configuration",
+          "source": "seed",
+          "confidence": 0.85,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694794+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/graphql",
+          "source": "seed",
+          "confidence": 0.82,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694812+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/openapi.json",
+          "source": "seed",
+          "confidence": 0.82,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694828+00:00"
+        },
+        {
+          "type": "path",
+          "type_label": "path",
+          "value": "/swagger-ui",
+          "source": "seed",
+          "confidence": 0.82,
+          "key": "path",
+          "support_sources": [
+            "seed"
+          ],
+          "timestamp": "2026-04-17T08:06:43.694847+00:00"
+        }
+      ]
+    }
+  ],
+  "blackboard_latest": [
+    {
+      "type": "protocol",
+      "type_label": "protocol",
+      "value": "http",
+      "source": "seed",
+      "confidence": 0.97,
+      "key": "name",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694579+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/rest/products/search",
+      "source": "seed",
+      "confidence": 0.92,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694611+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/rest/user/login",
+      "source": "seed",
+      "confidence": 0.92,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694650+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/rest/user/whoami",
+      "source": "seed",
+      "confidence": 0.9,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694681+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/api/challenges",
+      "source": "seed",
+      "confidence": 0.9,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694702+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/api/products",
+      "source": "seed",
+      "confidence": 0.9,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694771+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/rest/admin/application-configuration",
+      "source": "seed",
+      "confidence": 0.85,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694794+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/graphql",
+      "source": "seed",
+      "confidence": 0.82,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694812+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/openapi.json",
+      "source": "seed",
+      "confidence": 0.82,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694828+00:00"
+    },
+    {
+      "type": "path",
+      "type_label": "path",
+      "value": "/swagger-ui",
+      "source": "seed",
+      "confidence": 0.82,
+      "key": "path",
+      "support_sources": [
+        "seed"
+      ],
+      "timestamp": "2026-04-17T08:06:43.694847+00:00"
+    }
+  ],
+  "blackboard_latest_per_type": {
+    "domain": [
+      {
+        "type": "domain",
+        "type_label": "domain",
+        "value": "localhost",
+        "source": "seed",
+        "confidence": 0.97,
+        "key": "host",
+        "support_sources": [
+          "seed"
+        ],
+        "timestamp": "2026-04-17T08:06:43.694545+00:00"
+      }
+    ],
+    "path": [
+      {
+        "type": "path",
+        "type_label": "path",
+        "value": "/graphql",
+        "source": "seed",
+        "confidence": 0.82,
+        "key": "path",
+        "support_sources": [
+          "seed"
+        ],
+        "timestamp": "2026-04-17T08:06:43.694812+00:00"
+      },
+      {
+        "type": "path",
+        "type_label": "path",
+        "value": "/openapi.json",
+        "source": "seed",
+        "confidence": 0.82,
+        "key": "path",
+        "support_sources": [
+          "seed"
+        ],
+        "timestamp": "2026-04-17T08:06:43.694828+00:00"
+      },
+      {
+        "type": "path",
+        "type_label": "path",
+        "value": "/swagger-ui",
+        "source": "seed",
+        "confidence": 0.82,
+        "key": "path",
+        "support_sources": [
+          "seed"
+        ],
+        "timestamp": "2026-04-17T08:06:43.694847+00:00"
+      }
+    ],
+    "protocol": [
+      {
+        "type": "protocol",
+        "type_label": "protocol",
+        "value": "http",
+        "source": "seed",
+        "confidence": 0.97,
+        "key": "name",
+        "support_sources": [
+          "seed"
+        ],
+        "timestamp": "2026-04-17T08:06:43.694579+00:00"
+      }
+    ],
+    "url": [
+      {
+        "type": "url",
+        "type_label": "url",
+        "value": "http://localhost:3000",
+        "source": "seed",
+        "confidence": 0.97,
+        "key": "url",
+        "support_sources": [
+          "seed"
+        ],
+        "timestamp": "2026-04-17T08:06:43.694471+00:00"
+      }
+    ]
+  }
+}
